@@ -1,14 +1,31 @@
+import { useState } from "react";
+import EmployeeModal from "../modal/EmployeeModal";
 import { IEmployee } from "./Employee.type";
 import "./EmployeeList.style.css";
 
 type Props = {
   list: IEmployee[];
+  onDeleteClickHnd: (data: IEmployee) => void;
+  onEdit: (data: IEmployee) => void;
 };
 
 const EmployeeList = (props: Props) => {
-  const { list } = props;
+  const { list, onDeleteClickHnd, onEdit } = props;
+  const [showModal, setShowModal] = useState(false);
+  const [dataToShow, setDataToShow] = useState(null as IEmployee | null);
+
+  const viewEmployee = (data: IEmployee) => {
+    setDataToShow(data);
+    setShowModal(true);
+  };
+
+  const onCloseModal = () => setShowModal(false);
+
   return (
     <div>
+      <article>
+        <h3 className="list-header">Employee List</h3>
+      </article>
       <table>
         <tr>
           <th>Name</th>
@@ -22,15 +39,30 @@ const EmployeeList = (props: Props) => {
               <td>{employee.email}</td>
               <td>
                 <div>
-                  <input type="button" value="View" />
-                  <input type="button" value="Edit" />
-                  <input type="button" value="Delete" />
+                  <input
+                    type="button"
+                    value="View"
+                    onClick={() => viewEmployee(employee)}
+                  />
+                  <input
+                    type="button"
+                    value="Edit"
+                    onClick={() => onEdit(employee)}
+                  />
+                  <input
+                    type="button"
+                    value="Delete"
+                    onClick={() => onDeleteClickHnd(employee)}
+                  />
                 </div>
               </td>
             </tr>
           );
         })}
       </table>
+      {showModal && dataToShow !== null && (
+        <EmployeeModal onClose={onCloseModal} data={dataToShow} />
+      )}
     </div>
   );
 };

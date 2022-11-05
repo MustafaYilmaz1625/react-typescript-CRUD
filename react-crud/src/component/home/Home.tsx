@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AddEmployee from "../addEmployee/AddEmployee";
+import EditEmployee from "../edit/EditEmployee";
 import {
   IEmployee,
   dummyEploeeList,
@@ -15,6 +16,7 @@ const Home = () => {
   );
 
   const [shownPage, setShownPage] = useState(PageEnum.list);
+  const [dataToEdit, setDataToEdit] = useState({} as IEmployee);
 
   const onAddEmployee = () => {
     setShownPage(PageEnum.add);
@@ -28,6 +30,23 @@ const Home = () => {
     setEmployeeList([...employeeList, data]);
   };
 
+  const deleteEmployee = (data: IEmployee) => {
+    // To Index from array i,e employeeList
+    // Splice that
+    // Update new record
+
+    const indexToDelete = employeeList.indexOf(data);
+    const tempList = [...employeeList];
+
+    tempList.splice(indexToDelete, 1);
+    setEmployeeList(tempList);
+  };
+
+  const editEmployeeData = (data: IEmployee) => {
+    setShownPage(PageEnum.edit);
+    setDataToEdit(data);
+  };
+
   return (
     <>
       <article className="article-header">
@@ -39,8 +58,17 @@ const Home = () => {
       <section className="section-content">
         {shownPage === PageEnum.list && (
           <>
-            <input type="button" value="Add Employee" onClick={onAddEmployee} />
-            <EmployeeList list={employeeList} />
+            <input
+              type="button"
+              value="Add Employee"
+              className="add-employee-btn"
+              onClick={onAddEmployee}
+            />
+            <EmployeeList
+              list={employeeList}
+              onDeleteClickHnd={deleteEmployee}
+              onEdit={editEmployeeData}
+            />
           </>
         )}
 
@@ -50,6 +78,8 @@ const Home = () => {
             onBackBtnClickHnd={showListPage}
           />
         )}
+
+        {shownPage === PageEnum.edit && <EditEmployee />}
       </section>
     </>
   );
