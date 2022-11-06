@@ -27,38 +27,41 @@ const EmployeeList = (props: Props) => {
         <h3 className="list-header">Employee List</h3>
       </article>
       <table>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
-        {list.map((employee) => {
-          return (
-            <tr key={employee.id}>
-              <td>{`${employee.firstName} ${employee.lastName}`}</td>
-              <td>{employee.email}</td>
-              <td>
-                <div>
-                  <input
-                    type="button"
-                    value="View"
-                    onClick={() => viewEmployee(employee)}
-                  />
-                  <input
-                    type="button"
-                    value="Edit"
-                    onClick={() => onEdit(employee)}
-                  />
-                  <input
-                    type="button"
-                    value="Delete"
-                    onClick={() => onDeleteClickHnd(employee)}
-                  />
-                </div>
-              </td>
-            </tr>
-          );
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+          {list.map((employee) => {
+            return (
+              <tr key={employee.id}>
+                <td>{`${employee.firstName} ${employee.lastName}`}</td>
+                <td>{employee.email}</td>
+                <td>
+                  <div>
+                    <input
+                      type="button"
+                      value="View"
+                      onClick={() => viewEmployee(employee)}
+                    />
+                    <input
+                      type="button"
+                      value="Edit"
+                      onClick={() => onEdit(employee)}
+                    />
+                    <input
+                      type="button"
+                      value="Delete"
+                      onClick={() => onDeleteClickHnd(employee)}
+                    />
+                  </div>
+                </td>
+              </tr>
+            );
+          
         })}
+        </tbody>
       </table>
       {showModal && dataToShow !== null && (
         <EmployeeModal onClose={onCloseModal} data={dataToShow} />
