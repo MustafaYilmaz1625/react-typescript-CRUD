@@ -47,6 +47,14 @@ const Home = () => {
     setDataToEdit(data);
   };
 
+  const updateData = (data: IEmployee) => {
+    const filteredData = employeeList.filter((x) => x.id === data.id)[0];
+    const indexOfRecord = employeeList.indexOf(filteredData);
+    const tempData = [...employeeList];
+    tempData[indexOfRecord] = data;
+    setEmployeeList(tempData);
+  };
+
   return (
     <>
       <article className="article-header">
@@ -79,7 +87,13 @@ const Home = () => {
           />
         )}
 
-        {shownPage === PageEnum.edit && <EditEmployee />}
+        {shownPage === PageEnum.edit && (
+          <EditEmployee
+            data={dataToEdit}
+            onBackBtnClickHnd={showListPage}
+            onUpdateClickHnd={updateData}
+          />
+        )}
       </section>
     </>
   );
