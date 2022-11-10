@@ -3,7 +3,6 @@ import AddEmployee from "../addEmployee/AddEmployee";
 import EditEmployee from "../edit/EditEmployee";
 import {
   IEmployee,
-  dummyEploeeList,
   PageEnum,
 } from "../employee/Employee.type";
 import EmployeeList from "../employee/EmployeeList";
@@ -11,9 +10,7 @@ import EmployeeList from "../employee/EmployeeList";
 import "./Home.style.css";
 
 const Home = () => {
-  const [employeeList, setEmployeeList] = useState(
-    dummyEploeeList as IEmployee[]
-  );
+  const [employeeList, setEmployeeList] = useState([] as IEmployee[]);
   const [shownPage, setShownPage] = useState(PageEnum.list);
   const [dataToEdit, setDataToEdit] = useState({} as IEmployee);
 
@@ -32,21 +29,16 @@ const Home = () => {
     setShownPage(PageEnum.list);
   };
 
-
-   const _setEmployeeList = (list: IEmployee[]) => {
-     setEmployeeList(list);
-     window.localStorage.setItem("EmployeeList", JSON.stringify(list));
-   };
+  const _setEmployeeList = (list: IEmployee[]) => {
+    setEmployeeList(list);
+    window.localStorage.setItem("EmployeeList", JSON.stringify(list));
+  };
 
   const addEmployee = (data: IEmployee) => {
     _setEmployeeList([...employeeList, data]);
   };
 
   const deleteEmployee = (data: IEmployee) => {
-    // To Index from array i,e employeeList
-    // Splice that
-    // Update new record
-
     const indexToDelete = employeeList.indexOf(data);
     const tempList = [...employeeList];
 
