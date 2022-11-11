@@ -1,1 +1,1 @@
-live link: https://mellow-kitten-25eb2c.netlify.app/
+live link: https://react-typescript-crudd.netlify.app
