@@ -60,7 +60,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div >
       <article className="article-header">
         <header>
           <h1>React: Simple CRUD Application</h1>
@@ -99,7 +99,7 @@ const Home = () => {
           />
         )}
       </section>
-    </>
+    </div>
   );
 };
 

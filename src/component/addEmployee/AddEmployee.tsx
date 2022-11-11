@@ -45,7 +45,7 @@ const AddEmployee = (props: Props) => {
       </div>
       <form onSubmit={onSubmitBtnClickHnd}>
         <div>
-          <label>First Name : </label>
+          <label >First Name : </label>
           <input
             type="text"
             value={firstName}

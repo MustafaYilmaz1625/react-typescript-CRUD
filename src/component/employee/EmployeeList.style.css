@@ -1,3 +1,4 @@
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -6,7 +7,7 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
+  border: 1px solid #868383;
   text-align: left;
   padding: 8px;
 }
@@ -17,4 +18,15 @@ tr:nth-child(even) {
 
 .list-header {
   text-align: center;
+}
+
+.buttons input {
+  border: 1px solid #868383;
+  border-radius: 5px ;
+  width: 4rem;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
 }

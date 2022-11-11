@@ -39,7 +39,7 @@ const EmployeeList = (props: Props) => {
                 <td>{`${employee.firstName} ${employee.lastName}`}</td>
                 <td>{employee.email}</td>
                 <td>
-                  <div>
+                  <div className="buttons">
                     <input
                       type="button"
                       value="View"
